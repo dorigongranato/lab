@@ -13,6 +13,9 @@ builder.Services.AddTransient<IDbFactory, DbFactory>();
 builder.Services.AddTransient<IClienteService, ClienteService>();
 builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
 
+builder.Services.AddTransient<ITransportePessoalService, TransportePessoalService>();
+builder.Services.AddTransient<ITransportePessoalRepository, TransportePessoalRepository>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
