@@ -1,4 +1,5 @@
-﻿using Lab.Entity.Implementation;
+﻿using AutoMapper;
+using Lab.Entity.Implementation;
 using Lab.Service.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,12 +17,13 @@ namespace Lab.Api.Controllers
         }
 
         [Route("Inserir")]
-        [HttpGet]
-        public void Inserir(TransportePessoal transportePessoal)
+        [HttpPost]
+        public void Inserir()
         {
             try
             {
-                _transportePessoalService.Inserir(transportePessoal);
+                new Transporte().Iniciar();
+                //_transportePessoalService.Inserir(transportePessoal);
             }
             catch (Exception ex)
             {
