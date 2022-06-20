@@ -21,7 +21,7 @@ namespace Lab.Api.Controllers
         {
             try
             {
-                new Transporte().Iniciar(_transportePessoalService);
+                new Transporte().Iniciar();
                 //_transportePessoalService.Inserir(transportePessoal);
             }
             catch (Exception ex)

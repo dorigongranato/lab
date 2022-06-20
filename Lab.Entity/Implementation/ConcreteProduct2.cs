@@ -3,7 +3,7 @@ namespace Lab.Entity.Implementation
 {
     public class ConcreteProduct2 : ITransporte
     {
-        public string OperacaoDeTransporte()
+        public string Inserir()
         {
             return "{Result of TrasportePessoal} " + Passeio();
 

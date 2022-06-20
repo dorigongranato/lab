@@ -4,14 +4,10 @@
     {
         public abstract ITransporte FactoryMethod();
 
-        public string RotaTransporte()
+        public string IniciarTransporte()
         {
-            // Call the factory method to create a Product object.
             var transporte = FactoryMethod();
-            // Now, use the product.
-            var result = "Creator: The same creator's code has just worked with " + transporte.OperacaoDeTransporte();
-
-            return result;
+            return transporte.Inserir();
         }
     }
 }

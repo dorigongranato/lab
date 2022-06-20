@@ -1,5 +1,7 @@
-﻿using Dapper.Contrib.Extensions;
+﻿using Dapper;
+using Dapper.Contrib.Extensions;
 using Lab.Entity.Interface;
+using MySql.Data.MySqlClient;
 
 namespace Lab.Entity.Implementation
 {
@@ -11,35 +13,37 @@ namespace Lab.Entity.Implementation
 
         public string Tipo { get; set; }
 
-        private ITransportePessoalService _transportePessoalService;
-
-
-        public TransportePessoal(ITransportePessoalService transportePessoalService)
+        public string Inserir()
         {
-            _transportePessoalService = transportePessoalService;
-        }
+            using (MySqlConnection connection = new MySqlConnection("server=127.0.0.1;user=root;password=123456;database=lab"))
+            {
+                connection.Open();
 
-        public string OperacaoDeTransporte()
-        {
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        string Base = $"Insert into TransporteBase (ano) values (@AnoFabricacao); SELECT last_insert_id();";
+                        string Filho = "insert into TransportePessoal (IdTransporteBase, tipo) values (@idTransporteBase, @Tipo);";
 
+                        var idTransporteBase = connection.ExecuteScalar<int>(Base, this, transaction);
 
-            //ITransportePessoalService x = new
+                        this.idTransporteBase = idTransporteBase;
 
+                        var arows = connection.Execute(Filho, this, transaction);
 
-            return "{Result of TrasportePessoal} " + Passeio();
-        }
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
 
-        public string Passeio()
-        {
-
-            Inserir();
-
-            return "Levando a família ao shopping";
-        }
-
-        public void Inserir()
-        {
-            _transportePessoalService.Inserir(this);
+                    }
+                }
+                connection.Clone();
+                return "Transporte incluido com sucesso!";
+            }
         }
     }
 }

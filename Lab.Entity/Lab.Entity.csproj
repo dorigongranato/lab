@@ -10,9 +10,13 @@
     <None Remove="Implementation\" />
     <None Remove="Dapper.Contrib" />
     <None Remove="Interface\" />
+    <None Remove="MySql.Data" />
+    <None Remove="Dapper" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Dapper.Contrib" Version="2.0.78" />
+    <PackageReference Include="MySql.Data" Version="8.0.29" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Interface\" />

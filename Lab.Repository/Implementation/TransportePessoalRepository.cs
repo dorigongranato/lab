@@ -19,23 +19,29 @@ namespace Lab.Repository.Implementation
         {
             using (MySqlConnection connection = new MySqlConnection(_dbFactory.stringConexao()))
             {
-
                 connection.Open();
 
                 using (var transaction = connection.BeginTransaction())
                 {
-                    string Base = $"Insert into TransporteBase (ano) values (@AnoFabricacao); SELECT last_insert_id();";
-                    string Filho = "insert into TransportePessoal (IdTransporteBase, tipo) values (@idTransporteBase, @Tipo);";
+                    try
+                    {
+                        string Base = $"Insert into TransporteBase (ano) values (@AnoFabricacao); SELECT last_insert_id();";
+                        string Filho = "insert into TransportePessoal (IdTransporteBase, tipo) values (@idTransporteBase, @Tipo);";
 
-                    var idTransporteBase = connection.ExecuteScalar<int>(Base, transportePessoal, transaction);
+                        var idTransporteBase = connection.ExecuteScalar<int>(Base, transportePessoal, transaction);
 
-                    transportePessoal.idTransporteBase = idTransporteBase;
+                        transportePessoal.idTransporteBase = idTransporteBase;
 
-                    var arows = connection.Execute(Filho, transportePessoal, transaction);
+                        var arows = connection.Execute(Filho, transportePessoal, transaction);
 
-                    transaction.Commit();
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw ex;
+                    }
                 }
-
                 connection.Clone();
             }
         }
