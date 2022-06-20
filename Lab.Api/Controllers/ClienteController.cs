@@ -1,5 +1,5 @@
 ﻿using Lab.Entity.Implementation;
-using Lab.Service.Interface;
+using Lab.Entity.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lab.Api.Controllers

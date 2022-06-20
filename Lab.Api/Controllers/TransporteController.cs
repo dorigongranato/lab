@@ -1,6 +1,5 @@
-﻿using AutoMapper;
-using Lab.Entity.Implementation;
-using Lab.Service.Interface;
+﻿using Lab.Entity.Implementation;
+using Lab.Entity.Interface;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Lab.Api.Controllers
@@ -22,7 +21,7 @@ namespace Lab.Api.Controllers
         {
             try
             {
-                new Transporte().Iniciar();
+                new Transporte().Iniciar(_transportePessoalService);
                 //_transportePessoalService.Inserir(transportePessoal);
             }
             catch (Exception ex)

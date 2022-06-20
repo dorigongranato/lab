@@ -7,15 +7,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Interface\" />
     <None Remove="Implementation\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interface\" />
     <Folder Include="Implementation\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Lab.Repository\Lab.Repository.csproj" />
     <ProjectReference Include="..\Lab.Entity\Lab.Entity.csproj" />
+    <ProjectReference Include="..\Lab.Repository\Lab.Repository.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Interface\ITransportePessoalService.cs" />
+    <Compile Remove="Interface\IClienteService.cs" />
   </ItemGroup>
 </Project>

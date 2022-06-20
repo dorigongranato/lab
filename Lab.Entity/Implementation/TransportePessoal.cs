@@ -1,32 +1,45 @@
 ﻿using Dapper.Contrib.Extensions;
+using Lab.Entity.Interface;
 
 namespace Lab.Entity.Implementation
 {
     [Table("TransportePessoal")]
-    class TransportePessoal : Creator
+    public class TransportePessoal : TransporteBase, ITransporte
     {
         [Key]
         public int idTransportePessoal { get; set; }
 
         public string Tipo { get; set; }
 
-        public override ITransporte FactoryMethod()
-        {
-            return new ConcreteProduct1();
-        }
-    }
+        private ITransportePessoalService _transportePessoalService;
 
-    class ConcreteProduct1 : ITransporte
-    {
+
+        public TransportePessoal(ITransportePessoalService transportePessoalService)
+        {
+            _transportePessoalService = transportePessoalService;
+        }
+
         public string OperacaoDeTransporte()
         {
-            return "{Result of TrasportePessoal} " + Passeio();
 
+
+            //ITransportePessoalService x = new
+
+
+            return "{Result of TrasportePessoal} " + Passeio();
         }
 
         public string Passeio()
         {
+
+            Inserir();
+
             return "Levando a família ao shopping";
+        }
+
+        public void Inserir()
+        {
+            _transportePessoalService.Inserir(this);
         }
     }
 }

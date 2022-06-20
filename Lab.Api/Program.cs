@@ -2,7 +2,8 @@
 using Lab.Repository.Infra;
 using Lab.Repository.Interface;
 using Lab.Service.Implementation;
-using Lab.Service.Interface;
+using Lab.Entity.Interface;
+using Lab.Entity.Implementation;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,6 +16,7 @@ builder.Services.AddTransient<IClienteRepository, ClienteRepository>();
 
 builder.Services.AddTransient<ITransportePessoalService, TransportePessoalService>();
 builder.Services.AddTransient<ITransportePessoalRepository, TransportePessoalRepository>();
+
 
 
 builder.Services.AddControllers();

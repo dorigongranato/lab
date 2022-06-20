@@ -1,6 +1,6 @@
 ﻿using Lab.Entity.Implementation;
 using Lab.Repository.Interface;
-using Lab.Service.Interface;
+using Lab.Entity.Interface;
 
 namespace Lab.Service.Implementation
 {

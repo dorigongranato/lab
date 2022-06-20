@@ -16,9 +16,10 @@
         //public int PesoCarga { get; set; }
 
         //Inicia a criação dos objetos de acordo com o produto
-        public void Iniciar() {
-
-            CriarTransporte(new TransportePessoal());
+        public void Iniciar(ITransportePessoalService transportePessoalServiceß)
+        {
+            //Criação dos objetos foram colocados dentro de TransporteCreator
+            CriarTransporte(new TransporteCreator());
 
         }
 
